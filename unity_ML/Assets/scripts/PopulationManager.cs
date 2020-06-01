@@ -30,6 +30,7 @@ public class PopulationManager : MonoBehaviour
             go.GetComponent<DNA>().r = UnityEngine.Random.Range(0.0f, 1.0f);
             go.GetComponent<DNA>().g = UnityEngine.Random.Range(0.0f, 1.0f);
             go.GetComponent<DNA>().b = UnityEngine.Random.Range(0.0f, 1.0f);
+            go.GetComponent<DNA>().s = UnityEngine.Random.Range(0.2f, 0.5f);
             population.Add(go);
         }
     }
@@ -73,11 +74,22 @@ public class PopulationManager : MonoBehaviour
 
         //swap parent dna 
         //MAIN GENETICS ALGORITHM
+        if (UnityEngine.Random.Range(0, 1000) > 5)
+        {
+            offspring.GetComponent<DNA>().r = UnityEngine.Random.Range(0, 10) < 5 ? dna1.r : dna2.r;
+            offspring.GetComponent<DNA>().g = UnityEngine.Random.Range(0, 10) < 5 ? dna1.g : dna2.g;
+            offspring.GetComponent<DNA>().b = UnityEngine.Random.Range(0, 10) < 5 ? dna1.b : dna2.b;
+            offspring.GetComponent<DNA>().s = UnityEngine.Random.Range(0, 10) < 5 ? dna1.s : dna2.s;
+        }
+        //Mutation
+        else
+        {
+            offspring.GetComponent<DNA>().r = UnityEngine.Random.Range(0.0f, 1.0f);
+            offspring.GetComponent<DNA>().g = UnityEngine.Random.Range(0.0f, 1.0f);
+            offspring.GetComponent<DNA>().b = UnityEngine.Random.Range(0.0f, 1.0f);
+            offspring.GetComponent<DNA>().s = UnityEngine.Random.Range(0.2f, 0.5f);
 
-        offspring.GetComponent<DNA>().r = UnityEngine.Random.Range(0, 10) < 5 ? dna1.r : dna2.r;
-        offspring.GetComponent<DNA>().g = UnityEngine.Random.Range(0, 10) < 5 ? dna1.g : dna2.g;
-        offspring.GetComponent<DNA>().b = UnityEngine.Random.Range(0, 10) < 5 ? dna1.b : dna2.b;
-
+        }
 
         return offspring;
     }
